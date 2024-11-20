@@ -10,18 +10,12 @@
 </head>
 <body>
     <style>
-        /* Reset default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 /* Basic body styling */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
+    padding-top: 60px; /* Add padding to the top to avoid content overlap with the fixed navbar */
 }
 
 /* Navbar styles */
@@ -31,10 +25,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: fixed; /* Fix navbar to the top */
     top: 0;
-    width: 100%;
-    z-index: 1000;
+    left: 0;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Keep it on top of other content */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow */
     transition: background-color 0.3s ease-in-out;
 }
@@ -84,7 +79,7 @@ body {
     border-bottom: 2px solid #ffd700;
 }
 
-/* Media Query for responsiveness */
+/* Mobile responsiveness */
 @media screen and (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -137,17 +132,7 @@ body {
 .navbar {
     transition: background-color 0.3s ease, padding 0.3s ease;
 }
-
-.sticky {
-    position: sticky;
-    top: 0;
-    background-color: #222; /* Darken the navbar when sticky */
-    padding: 10px 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow when sticky */
-}
-
-
-    </style>
+</style>
     {% include 'nav.html'%}
 
     {% block body  %}

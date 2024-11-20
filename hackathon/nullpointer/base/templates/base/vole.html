@@ -1,0 +1,95 @@
+{% extends 'main.html' %}
+
+
+
+
+
+{% block body %}
+<style>
+    .food-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: flex-start;
+        margin-top: 20px;
+    }
+
+    .food-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 250px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-top: 20px;
+    }
+
+    .food-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .food-card-body {
+        padding: 20px;
+    }
+
+    /* Fancy food name styling */
+    .food-name {
+        font-size: 1.4em; /* Larger font size */
+        margin-bottom: 10px;
+        color: #ff6b6b; /* Vibrant color */
+        font-family: 'Georgia', serif; /* Fancy font family */
+        font-weight: bold;
+        text-transform: uppercase; /* Make food names uppercase */
+        background: linear-gradient(45deg, #ff6b6b, #f39c12); /* Gradient color */
+        -webkit-background-clip: text; /* Apply gradient to text */
+        color: transparent; /* Ensure text color is transparent to show gradient */
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Adding a text shadow for depth */
+    }
+
+    /* Fancy organization name styling */
+    .organization-name {
+        font-size: 1.2em; /* Slightly smaller than food name */
+        font-weight: bold;
+        color: #2ecc71; /* Green color for the organization name */
+        font-family: 'Arial', sans-serif; /* Clean, sans-serif font */
+        text-transform: capitalize; /* Capitalize first letter of each word */
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for readability */
+    }
+
+    .food-card p {
+        color: #555;
+        font-size: 16px;
+    }
+
+    .food-card strong {
+        color: #000;
+    }
+</style>
+
+
+
+
+    <form method="GET" action="{% url 'base:vol' %}" style="margin-bottom: 20px;">
+        <input type="text" name="search" placeholder="Search for food..." value="{{ search_query }}" style="padding: 10px; width: 100%; max-width: 300px; border-radius: 4px; border: 1px solid #ccc;">
+        <button type="submit" style="padding: 10px 15px; background-color: #2ecc71; color: white; border: none; border-radius: 4px; margin-top: 10px;">Search</button>
+    </form>
+
+    <div class="food-container">
+        {% for food in foods %}
+            <div class="food-card">
+                <div class="food-card-body">
+                    <h3 class="food-name">{{ food.name }}</h3>
+                    <p><strong>Organization:</strong> {{ food.user.first_name }}</p>
+                    <p><strong>Quantity:</strong> {{ food.quantity }}</p>
+                    <p><strong>Expiry Date:</strong> {{ food.expirdate }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>No food items found matching your search.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
+

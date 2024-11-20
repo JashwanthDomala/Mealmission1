@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<style>
+    /* Styling for the update-form */
+    .update-form {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styling specifically for the h2 heading */
+    #heading {
+        text-align: center;
+        font-size: 2.5em; /* Large size for the heading */
+        color: #2c3e50; /* Dark blue color */
+        font-weight: 700; /* Bold weight */
+        margin-bottom: 30px; /* Spacing below the heading */
+        text-transform: uppercase; /* Uppercase text */
+        letter-spacing: 2px; /* Increased letter spacing for visual effect */
+        text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.15); /* Subtle text shadow for depth */
+    }
+
+    /* Styling for the form labels */
+    .update-form label {
+        font-size: 16px;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    /* Styling for the input fields */
+    .update-form input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    /* Styling for the submit button */
+    .update-form button {
+        background-color: #3498db; /* Blue */
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    /* Button hover effect */
+    .update-form button:hover {
+        background-color: #2980b9; /* Darker blue */
+    }
+</style>
+
+<h2 id="heading">Update Food Item</h2>
+
+<form method="POST" class="update-form">
+    {% csrf_token %}
+    <label for="name">Food Name:</label>
+    <input type="text" id="name" name="name" value="{{ food.name }}" disabled> <!-- Name is not editable -->
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" value="{{ food.quantity }}" required>
+
+    <button type="submit">Update Quantity</button>
+</form>
+
+{% endblock %}

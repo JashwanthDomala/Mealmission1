@@ -75,8 +75,10 @@ def loginpage(request):
                 # Redirect based on user type
                 if user_post == 'Organization':
                     return redirect('base:org')
-                else:
+                elif user_post == 'Volunteer':\
+                    return redirect('base:vol')
                     # Redirect to a default page, you can customize this
+                else:
                     return redirect('base:home')
             except UserProfile.DoesNotExist:
                 return redirect('base:home')

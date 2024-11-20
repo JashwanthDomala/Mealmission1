@@ -1,5 +1,108 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block body %}
-Home
+    <style>
+        /* General Body Styling */
+        body {
+            background-image: url("{% static 'style/home.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover; /* Ensure the image covers the whole screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center; /* Center the text */
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            font-family: 'Arial', sans-serif; /* Modern, clean font */
+        }
+
+        /* Add a light semi-transparent background for better text visibility */
+        .text-overlay {
+            background-color: rgba(255, 255, 255, 0.6); /* Light semi-transparent white background */
+            padding: 30px 20px; /* Padding around text */
+            border-radius: 10px; /* Rounded corners for the overlay */
+        }
+
+        /* Heading 1 Styles */
+        h1 {
+            font-size: 3.5em; /* Large size for the main headline */
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #000; /* Black text color */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for readability */
+        }
+
+        /* Heading 4 Styles */
+        h4 {
+            font-size: 1.3em; /* Slightly smaller text for the subheading */
+            line-height: 1.6; /* Improve line spacing for readability */
+            margin-bottom: 40px;
+            max-width: 800px; /* Set a max-width to avoid long lines of text */
+            margin-left: auto;
+            margin-right: auto;
+            color: #000; /* Black text color */
+        }
+
+        /* Footer Section Styling */
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2em;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            padding: 10px 0;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer p {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        /* Button Style */
+        .cta-button {
+            background-color: #ff6b6b; /* Warm red for a call-to-action button */
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 30px; /* Rounded corners */
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 30px;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #2ecc71; /* Green color on hover */
+            transform: scale(1.05); /* Slight scaling on hover */
+        }
+
+        .cta-button:active {
+            transform: scale(1); /* Reset scale on click */
+        }
+    </style>
+
+    <!-- Main Content -->
+    <div class="text-overlay">
+        <h1>Reducing Food Waste, Fighting Hunger.</h1>
+        <h4>Efficient Distribution: Real-time updates on food availability.<br>
+        Transparency: Track donations and their impact.<br>
+        Community Engagement: Collaborate with NGOs, volunteers, and organizations.</h4>
+
+        <!-- Call to Action Button -->
+        <a href="{% url 'accounts:login' %}" class="cta-button">Join MealMission Today</a>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>Together, we can make a difference. Be a part of the solution.</p>
+    </div>
+
 {% endblock %}
